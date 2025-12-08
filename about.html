@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Tropical Treats</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. Global & Colors --- */
+        :root {
+            --color-green: #38761d; /* Vibrant Green */
+            --color-brown: #5c3b1e; /* Warm Brown */
+            --color-gold: #ffd966;  /* Gold/Yellow Accent */
+            --color-white: #ffffff;
+            --color-light-gray: #f5f5f5;
+            --color-text: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        /* --- 2. Header & Navigation --- */
+        .header {
+            background-color: var(--color-white);
+            border-bottom: 2px solid var(--color-light-gray);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--color-brown);
+        }
+
+        .logo-placeholder img {
+            height: 48px;
+            background-color: var(--color-gold);
+            border-radius: 50%;
+            border: 2px solid var(--color-green);
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            color: var(--color-brown);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--color-green);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--color-brown);
+        }
+
+        .cart-icon {
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            color: var(--color-green);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .cart-count {
+            background-color: var(--color-gold);
+            color: var(--color-brown);
+            border-radius: 50%;
+            padding: 2px 7px;
+            margin-left: 5px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        /* --- 3. Main Container --- */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: var(--color-white);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- 4. Typography --- */
+        h1 {
+            color: var(--color-green);
+            border-bottom: 2px solid var(--color-light-gray);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .section-title {
+            color: var(--color-green);
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--color-light-gray);
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        /* --- 5. Contact Section --- */
+        .contact-info {
+            background-color: var(--color-light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        .disclaimer {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* --- 6. Footer --- */
+        .footer {
+            background-color: var(--color-brown);
+            color: var(--color-white);
+            text-align: center;
+            padding: 20px 5%;
+            margin-top: 50px;
+        }
+
+        /* --- 7. Responsive Design --- */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo-placeholder"><img src="logo-sm.png" alt="" srcset=""></div>
+            Tropical Treats
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="cart.html" class="cart-icon">
+                🛒 Cart (<span id="cart-item-count">0</span>)
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>About Us</h1>
+
+        <h2 class="section-title">About Tropical Treats</h2>
+        <p>Tropical Treats started as a business idea for college. We wanted to create something that would give students natural energy without all the artificial stuff in regular snacks. Our coconut drops with pineapple and ginger are perfect for studying or just chilling with friends.</p>
+
+        <h2 class="section-title">Why We Do This</h2>
+        <p>As students ourselves, we know what it's like to need that energy boost during long study sessions. Instead of reaching for processed snacks, we thought - why not make something with real ingredients that actually tastes amazing and gives you natural energy?</p>
+
+        <h2 class="section-title">Our Product</h2>
+        <ul style="margin-left: 20px; margin-bottom: 20px;">
+            <li>Real coconut, pineapple, and ginger</li>
+            <li>No artificial preservatives</li>
+            <li>Three sizes to fit any budget</li>
+            <li>Perfect for students, study groups, or just treating yourself</li>
+        </ul>
+
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-info">
+            <p><strong>Email:</strong> info@tropical-treats.static.domains</p>
+            <p><strong>Location:</strong> Kingston, Jamaica</p>
+            <p><strong>Business Hours:</strong> Monday - Friday, 9am - 6pm EST</p>
+            <p><strong>Follow us:</strong> @TropicalTreatsJA (Instagram)</p>
+        </div>
+
+        <p class="disclaimer">This is a student business concept developed for academic coursework.</p>
+    </div>
+
+    <footer class="footer">
+        &copy; 2025 Tropical Treats. All Rights Reserved.
+    </footer>
+
+    <script>
+        const CART_KEY = 'tropicalTreatsCart';
+        
+        // Update the cart icon counter
+        function updateCartDisplay() {
+            const cart = getCart();
+            const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-item-count').textContent = itemCount;
+        }
+
+        // Load cart data from localStorage
+        function getCart() {
+            const cartJSON = localStorage.getItem(CART_KEY);
+            return cartJSON ? JSON.parse(cartJSON) : [];
+        }
+
+        // Initial update when the page loads
+        updateCartDisplay();
+    </script>
+</body>
+</html>
