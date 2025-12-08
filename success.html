@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed! | Tropical Treats</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. Global & Colors (Consistent) --- */
+        :root {
+            --color-green: #38761d;
+            --color-brown: #5c3b1e;
+            --color-gold: #ffd966;
+            --color-white: #ffffff;
+            --color-text: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            color: var(--color-text);
+            line-height: 1.6;
+            background-color: var(--color-light-gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        
+        .confirmation-box {
+            max-width: 600px;
+            padding: 40px;
+            background-color: var(--color-white);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .icon {
+            font-size: 4em;
+            color: var(--color-green);
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: var(--color-brown);
+            margin-bottom: 10px;
+        }
+
+        .note {
+            background-color: var(--color-gold);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: 600;
+            color: var(--color-brown);
+        }
+
+        .home-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: var(--color-green);
+            color: var(--color-white);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: var(--color-brown);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="confirmation-box">
+        <div class="icon">✅</div>
+        <h1>Order Placed! (Demo Complete)</h1>
+        <p>Thank you for testing the Tropical Treats e-commerce system.</p>
+
+        <div class="note">
+            <p><strong>IMPORTANT:</strong> This transaction was a successful **OFFLINE SIMULATION**.</p>
+            <p style="margin-top: 5px;">In a live production environment, your data would have been securely submitted to a payment gateway (like Snipcart or Stripe) and an official receipt would be emailed to you.</p>
+        </div>
+
+        <a href="index.html" class="home-button">Back to Tropical Treats</a>
+    </div>
+
+</body>
+</html>

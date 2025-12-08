@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart | Tropical Treats</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. Global & Colors (Consistent with index.html) --- */
+        :root {
+            --color-green: #38761d;
+            --color-brown: #5c3b1e;
+            --color-gold: #ffd966;
+            --color-white: #ffffff;
+            --color-light-gray: #f5f5f5;
+            --color-text: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            color: var(--color-text);
+            line-height: 1.6;
+            background-color: var(--color-light-gray);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: var(--color-white);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--color-green);
+            border-bottom: 2px solid var(--color-light-gray);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .cart-table th, .cart-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-light-gray);
+        }
+
+        .cart-table th {
+            background-color: var(--color-light-gray);
+            color: var(--color-brown);
+        }
+
+        .quantity-controls input {
+            width: 50px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .remove-button {
+            background-color: #e06666;
+            color: var(--color-white);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .cart-summary {
+            text-align: right;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .checkout-button {
+            background-color: var(--color-gold);
+            color: var(--color-brown);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.3em;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            float: right;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--color-green);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body onload="displayCart()">
+
+    <div class="container">
+        <a href="index.html" class="back-link">&leftarrow; Continue Shopping</a>
+        <h1>Shopping Cart</h1>
+
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price (JMD)</th>
+                    <th>Quantity</th>
+                    <th>Total (JMD)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="cart-items-body">
+                </tbody>
+        </table>
+        
+        <div class="cart-summary">
+            Subtotal: <span id="cart-subtotal">JMD $0.00</span>
+        </div>
+
+        <button class="checkout-button" onclick="window.location.href='checkout.html'">
+            Proceed to Checkout
+        </button>
+        
+        <p id="empty-cart-message" style="text-align: center; color: #888; display: none;">Your cart is currently empty.</p>
+    </div>
+
+    <script>
+        const CART_KEY = 'tropicalTreatsCart';
+
+        function getCart() {
+            const cartJSON = localStorage.getItem(CART_KEY);
+            return cartJSON ? JSON.parse(cartJSON) : [];
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+        }
+
+        function displayCart() {
+            const cart = getCart();
+            const body = document.getElementById('cart-items-body');
+            let subtotal = 0;
+            body.innerHTML = ''; // Clear existing content
+
+            if (cart.length === 0) {
+                document.getElementById('empty-cart-message').style.display = 'block';
+                document.querySelector('.checkout-button').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('empty-cart-message').style.display = 'none';
+            document.querySelector('.checkout-button').style.display = 'block';
+
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>JMD $${item.price.toFixed(2)}</td>
+                    <td class="quantity-controls">
+                        <input type="number" value="${item.quantity}" min="1" 
+                               onchange="updateQuantity(${index}, this.value)">
+                    </td>
+                    <td>JMD $${itemTotal.toFixed(2)}</td>
+                    <td><button class="remove-button" onclick="removeItem(${index})">Remove</button></td>
+                `;
+                body.appendChild(row);
+            });
+
+            document.getElementById('cart-subtotal').textContent = `JMD $${subtotal.toFixed(2)}`;
+        }
+
+        function updateQuantity(index, newQuantity) {
+            let cart = getCart();
+            const qty = parseInt(newQuantity);
+
+            if (qty > 0) {
+                cart[index].quantity = qty;
+            } else {
+                // If quantity is set to 0, remove the item
+                cart.splice(index, 1);
+            }
+            
+            saveCart(cart);
+            displayCart();
+        }
+
+        function removeItem(index) {
+            let cart = getCart();
+            const itemName = cart[index].name;
+            if (confirm(`Are you sure you want to remove ${itemName} from your cart?`)) {
+                cart.splice(index, 1);
+                saveCart(cart);
+                displayCart();
+            }
+        }
+        
+        // --- Dummy function for updateCartDisplay (for consistency, though not needed here) ---
+        function updateCartDisplay() {
+            // Function stub - not required on cart.html but helpful if used elsewhere
+        }
+    </script>
+</body>
+</html>
