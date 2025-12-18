@@ -76,9 +76,96 @@
         .home-button:hover {
             background-color: var(--color-brown);
         }
+
+        /* --- Header & Navigation --- */
+        .header {
+            background-color: var(--color-white);
+            border-bottom: 2px solid var(--color-light-gray);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--color-brown);
+        }
+
+        .logo-placeholder img {
+            height: 48px;
+            background-color: var(--color-gold);
+            border-radius: 50%;
+            border: 2px solid var(--color-green);
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            color: var(--color-brown);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--color-green);
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--color-brown);
+        }
+
+        .cart-icon {
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            color: var(--color-green);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .cart-count {
+            background-color: var(--color-gold);
+            color: var(--color-brown);
+            border-radius: 50%;
+            padding: 2px 7px;
+            margin-left: 5px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
+
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo-placeholder"><img src="logo-sm.png" alt="Tropical Treats Logo"></div>
+            Tropical Treats
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="product.html" class="nav-link">Products</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="investors.html" class="nav-link">Investors</a>
+            <a href="resources.html" class="nav-link">Resources</a>
+            <a href="cart.html" class="cart-icon">
+                🛒 Cart (<span id="cart-item-count">0</span>)
+            </a>
+        </div>
+    </header>
 
     <div class="confirmation-box">
         <div class="icon">✅</div>
@@ -93,5 +180,24 @@
         <a href="index.html" class="home-button">Back to Tropical Treats</a>
     </div>
 
+    <script>
+        const CART_KEY = 'tropicalTreatsCart';
+        
+        // Update the cart icon counter
+        function updateCartDisplay() {
+            const cart = getCart();
+            const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-item-count').textContent = itemCount;
+        }
+
+        // Load cart data from localStorage
+        function getCart() {
+            const cartJSON = localStorage.getItem(CART_KEY);
+            return cartJSON ? JSON.parse(cartJSON) : [];
+        }
+
+        // Initial update when the page loads
+        updateCartDisplay();
+    </script>
 </body>
 </html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources | Tropical Treats</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. Global & Colors --- */
+        :root {
+            --color-green: #38761d; /* Vibrant Green */
+            --color-brown: #5c3b1e; /* Warm Brown */
+            --color-gold: #ffd966;  /* Gold/Yellow Accent */
+            --color-white: #ffffff;
+            --color-light-gray: #f5f5f5;
+            --color-text: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        /* --- 2. Header & Navigation --- */
+        .header {
+            background-color: var(--color-white);
+            border-bottom: 2px solid var(--color-light-gray);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--color-brown);
+        }
+
+        .logo-placeholder img {
+            height: 48px;
+            background-color: var(--color-gold);
+            border-radius: 50%;
+            border: 2px solid var(--color-green);
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            color: var(--color-brown);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-link {
+            color: var(--color-green);
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--color-brown);
+        }
+
+        .cart-icon {
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            color: var(--color-green);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .cart-count {
+            background-color: var(--color-gold);
+            color: var(--color-brown);
+            border-radius: 50%;
+            padding: 2px 7px;
+            margin-left: 5px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        /* --- 3. Main Container --- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        /* --- 4. Typography --- */
+        h1 {
+            color: var(--color-green);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            color: var(--color-brown);
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 2px solid var(--color-light-gray);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: var(--color-green);
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        /* --- 5. Section Styling --- */
+        .section {
+            background-color: var(--color-white);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- 6. Resource Grid --- */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .resource-card {
+            background-color: var(--color-light-gray);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-green);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-card h4 {
+            color: var(--color-brown);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .resource-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* --- 7. FAQ Section --- */
+        .faq-item {
+            background-color: var(--color-light-gray);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background-color: var(--color-green);
+            color: var(--color-white);
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: var(--color-brown);
+        }
+
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-toggle {
+            font-size: 1.2em;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* --- 8. Alert Boxes --- */
+        .alert-box {
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid;
+        }
+
+        .alert-warning {
+            background-color: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+
+        .alert-info {
+            background-color: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        /* --- 9. Ingredient List --- */
+        .ingredient-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .ingredient-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--color-light-gray);
+            display: flex;
+            align-items: center;
+        }
+
+        .ingredient-list li:before {
+            content: "🌿";
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        /* --- 10. Back to Top Button --- */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--color-green);
+            color: var(--color-white);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--color-brown);
+        }
+
+        /* --- 11. Footer --- */
+        .footer {
+            background-color: var(--color-brown);
+            color: var(--color-white);
+            text-align: center;
+            padding: 20px 5%;
+            margin-top: 50px;
+        }
+
+        /* --- 12. Responsive Design --- */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo-placeholder"><img src="logo-sm.png" alt="Tropical Treats Logo"></div>
+            Tropical Treats
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="product.html" class="nav-link">Products</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="investors.html" class="nav-link">Investors</a>
+            <a href="resources.html" class="nav-link">Resources</a>
+            <a href="cart.html" class="cart-icon">
+                🛒 Cart (<span id="cart-item-count">0</span>)
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Resources & Information</h1>
+
+        <!-- Definitions Section -->
+        <section class="section">
+            <h2>Key Definitions</h2>
+            <p>Understanding e-commerce and digital business concepts is essential in today's marketplace. Here are important terms related to our online business operations.</p>
+
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <span class="resource-icon">💼</span>
+                    <h4>E-business (Electronic Business)</h4>
+                    <p>The use of the internet and digital technologies to conduct business activities, including buying and selling, customer service, marketing, and internal operations.</p>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-icon">📱</span>
+                    <h4>M-commerce (Mobile Commerce)</h4>
+                    <p>The buying and selling of goods and services using <strong>mobile devices</strong> such as smartphones and tablets, often through apps or mobile websites.</p>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-icon">🛡️</span>
+                    <h4>Cybercrime</h4>
+                    <p>Any illegal activity carried out using computers, digital devices, or the internet, such as hacking, online fraud, identity theft, or spreading malware.</p>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-icon">💳</span>
+                    <h4>Mobile Money</h4>
+                    <p>A digital financial service that allows users to <strong>store, send, and receive money</strong> and make payments using a mobile phone without needing a traditional bank account.</p>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-icon">🌐</span>
+                    <h4>Web 2.0</h4>
+                    <p>The second generation of the internet that focuses on <strong>user interaction, participation, and content creation</strong>, including social media, blogs, wikis, and online collaboration platforms.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Health & Nutrition Section -->
+        <section class="section">
+            <h2>Health & Nutrition</h2>
+            <p>Tropical Treats: Pine & Ginger Coconut Drops are made with natural ingredients designed to provide clean energy and nutritional benefits.</p>
+
+            <h3>Natural Ingredients</h3>
+            <ul class="ingredient-list">
+                <li><strong>Real Coconut:</strong> Provides healthy fats and natural energy</li>
+                <li><strong>Fresh Pineapple:</strong> Natural sweetness with vitamins and enzymes</li>
+                <li><strong>Ginger:</strong> Natural stimulant with anti-inflammatory properties</li>
+                <li><strong>Sugar:</strong> Just the right amount for balanced sweetness</li>
+            </ul>
+
+            <div class="alert-box alert-warning">
+                <h4>⚠️ Health Disclaimer</h4>
+                <p>Our product is not a medical item and is not intended to diagnose, treat, cure, or prevent any illness. When we describe the drops as providing "natural energy," this refers to the natural fats in coconut, the natural sugars in pineapple, and the stimulating properties of ginger, though individual results may vary.</p>
+            </div>
+
+            <h3>Allergen Information</h3>
+            <div class="alert-box alert-info">
+                <h4>🥥 Allergy Warning</h4>
+                <p>Because the product contains coconut, individuals with nut or coconut allergies should avoid consuming it. Customers are encouraged to enjoy the snack in moderation as part of a balanced diet.</p>
+            </div>
+
+            <h3>Dietary Considerations</h3>
+            <p>Those with dietary restrictions, diabetes, allergies, or sensitive health conditions should consult a healthcare professional before trying new foods. All nutritional and health-related information provided on our website is based on general knowledge of the ingredients and should not be considered medical advice.</p>
+        </section>
+
+        <!-- Educational Issues Section -->
+        <section class="section">
+            <h2>Educational Impact</h2>
+            <p>Tropical Treats is more than just a snack - it's part of a larger movement toward better student wellness and entrepreneurship education.</p>
+
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <span class="resource-icon">🍎</span>
+                    <h4>Promoting Healthier Snack Choices</h4>
+                    <p>Many students rely on sugary, artificial snacks. Tropical Treats encourages better eating habits by raising awareness about natural ingredients and how foods like coconut, pineapple, and ginger can support focus and energy.</p>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-icon">📚</span>
+                    <h4>Supporting Student Learning & Wellness</h4>
+                    <p>Because our product was designed with students in mind, we highlight the role of good nutrition in better studying. Natural energy can help students stay alert during classes, group projects, and late-night study sessions.</p>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-icon">🚀</span>
+                    <h4>Encouraging Student Entrepreneurship</h4>
+                    <p>Tropical Treats began as a college business idea, and now it's a real product. By sharing our story, we hope to inspire other students to explore innovation, creativity, and entrepreneurship as part of their educational journey.</p>
+                </div>
+            </div>
+
+            <div class="alert-box alert-success">
+                <h4>🎓 Educational Mission</h4>
+                <p>We believe that entrepreneurship education should be practical and hands-on. Our success story demonstrates how classroom concepts can be applied to create real-world solutions that benefit the student community.</p>
+            </div>
+        </section>
+
+        <!-- Legal Information Section -->
+        <section class="section">
+            <h2>Legal & Compliance</h2>
+            <p>Tropical Treats operates with full commitment to legal compliance and consumer protection. Here's our transparent approach to business operations.</p>
+
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <span class="resource-icon">🛡️</span>
+                    <h4>Food Safety & Proper Labeling</h4>
+                    <p>Tropical Treats follows national food-safety guidelines to ensure our Pine & Ginger Coconut Drops are prepared, handled, and packaged safely. All ingredients, especially allergens like coconut, are clearly listed so customers know exactly what they're enjoying.</p>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-icon">📢</span>
+                    <h4>Honest Advertising & Product Claims</h4>
+                    <p>We are committed to truthful marketing. Any benefit we highlight, such as "natural energy," reflects the real ingredients in our product. We never exaggerate or mislead - our customers deserve honesty from start to finish.</p>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-icon">🔒</span>
+                    <h4>Customer Privacy Protection</h4>
+                    <p>If we collect information through our website (like for orders or newsletters), we keep it safe and secure. Customer data is never shared without permission. Your trust matters to us.</p>
+                </div>
+            </div>
+
+            <h3>Our Commitment</h3>
+            <p>We believe that successful business is built on trust, transparency, and ethical practices. Our legal compliance isn't just about following rules - it's about doing right by our customers and community.</p>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Are the ingredients really all-natural?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! We use simple, real ingredients: coconut, sugar, pineapple, and ginger. No artificial preservatives, colors, or flavors are added to our Pine & Ginger Coconut Drops.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Is the price in USD or JMD?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>All prices listed are in JMD (Jamaican Dollars). We offer three sizes: Small ($150 JMD), Medium ($250 JMD), and Large ($350 JMD).</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Do you ship outside of Jamaica?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Currently, we offer islandwide shipping via J Post or local Kingston pickup. We are exploring international shipping options for the future.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How long do the coconut drops stay fresh?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Our coconut drops stay fresh for up to 3 weeks when stored in an airtight container at room temperature. For best quality, consume within 2 weeks of purchase.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Are there any other allergens I should be aware of?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Our product contains coconut, which may be problematic for individuals with tree nut allergies. Our facility is coconut-free except for our product, but we recommend those with severe allergies consult with their healthcare provider.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can I place bulk orders for events?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! We offer bulk ordering for events, study groups, and organizations. Please contact us at info@tropical-treats.static.domains for special pricing and delivery arrangements.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What makes Tropical Treats different from other snacks?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Tropical Treats is unique because it's created by a student, for students. We combine authentic Caribbean flavors with the specific needs of students who need natural energy. Our product tells a story of entrepreneurship, culture, and wellness.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <footer class="footer">
+        &copy; 2025 Tropical Treats. All Rights Reserved.
+    </footer>
+
+    <script>
+        const CART_KEY = 'tropicalTreatsCart';
+        
+        // Update the cart icon counter
+        function updateCartDisplay() {
+            const cart = getCart();
+            const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-item-count').textContent = itemCount;
+        }
+
+        // Load cart data from localStorage
+        function getCart() {
+            const cartJSON = localStorage.getItem(CART_KEY);
+            return cartJSON ? JSON.parse(cartJSON) : [];
+        }
+
+        // Toggle FAQ items
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+
+        // Scroll to top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            const backToTopBtn = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTopBtn.style.display = 'block';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+
+        // Initial update when the page loads
+        updateCartDisplay();
+    </script>
+</body>
+</html>
